@@ -17,10 +17,10 @@ The LiquidGlass bottom bar was compiled by MonetCarlos for this software
 
 ### Home / Wallpapers / About / Settings
 <p align="center">
-<img src="https://github.com/monetcarlos2026/monet-icon-pack/monet/1.jpg?maxAge=0" height="350"/>
-<img src="https://github.com/monetcarlos2026/monet-icon-pack/monet/2.jpg?maxAge=0" height="350"/>
-<img src="https://github.com/monetcarlos2026/monet-icon-pack/monet/3.jpg?maxAge=0" height="350"/>
-<img src="https://github.com/monetcarlos2026/monet-icon-pack/monet/4.jpg?maxAge=0" height="350"/>
+<img src="https://github.com/monetcarlos2026/monet-icon-pack/blob/main/monet/1.jpg?maxAge=0" height="350"/>
+<img src="https://github.com/monetcarlos2026/monet-icon-pack/blob/main/monet/2.jpg?maxAge=0" height="350"/>
+<img src="https://github.com/monetcarlos2026/monet-icon-pack/blob/main/monet/3.jpg?maxAge=0" height="350"/>
+<img src="https://github.com/monetcarlos2026/monet-icon-pack/blob/main/monet/4.jpg?maxAge=0" height="350"/>
 </p>
 
 ### Home / Icons / Apply / Requests
