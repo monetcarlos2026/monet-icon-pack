@@ -48,6 +48,7 @@ fun LiquidGlassBottomBar(
     onSelect: (Int) -> Unit,
     backdropState: GlassBackdropState,
     modifier: Modifier = Modifier,
+    onInteraction: () -> Unit = {},
 ) {
     if (tabs.isEmpty()) return
 
@@ -107,6 +108,7 @@ fun LiquidGlassBottomBar(
             onTabSelected = onTabSelectedCb,
             backdrop = backdrop,
             tabsCount = tabs.size,
+            onInteraction = onInteraction,
             modifier = Modifier
                 .fillMaxWidth()
                 .onGloballyPositioned { barPos = it.positionInWindow() }

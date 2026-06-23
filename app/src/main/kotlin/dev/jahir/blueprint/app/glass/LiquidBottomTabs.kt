@@ -64,18 +64,16 @@ fun LiquidBottomTabs(
     backdrop: Backdrop,
     tabsCount: Int,
     modifier: Modifier = Modifier,
+    onInteraction: () -> Unit = {},
     content: @Composable RowScope.() -> Unit
 ) {
     val isLightTheme = !isSystemInDarkTheme()
     val accentColor =
         if (isLightTheme) Color(0xFF0088FF)
         else Color(0xFF0091FF)
-    // Keep the surface fairly translucent (close to the catalog's 0.4) so the lens
-    // refraction of the scrolling content behind the bar stays visible at rest — that
-    // live distortion IS the liquid-glass look. Too opaque hides it.
     val containerColor =
-        if (isLightTheme) Color(0xFFFFFFFF).copy(0.42f)
-        else Color(0xFF1C1C1E).copy(0.4f)
+        if (isLightTheme) Color(0xFFFAFAFA).copy(0.4f)
+        else Color(0xFF121212).copy(0.4f)
 
     val tabsBackdrop = rememberLayerBackdrop()
 
@@ -111,8 +109,9 @@ fun LiquidBottomTabs(
                 visibilityThreshold = 0.001f,
                 initialScale = 1f,
                 pressedScale = 78f / 56f,
-                onDragStarted = {},
+                onDragStarted = { onInteraction() },
                 onDragStopped = {
+                    onInteraction()
                     val targetIndex = targetValue.fastRoundToInt().fastCoerceIn(0, tabsCount - 1)
                     currentIndex = targetIndex
                     animateToValue(targetIndex.toFloat())
@@ -124,6 +123,7 @@ fun LiquidBottomTabs(
                     }
                 },
                 onDrag = { _, dragAmount ->
+                    onInteraction()
                     updateValue(
                         (targetValue + dragAmount.x / tabWidth * if (isLtr) 1f else -1f)
                             .fastCoerceIn(0f, (tabsCount - 1).toFloat())
@@ -144,6 +144,7 @@ fun LiquidBottomTabs(
             snapshotFlow { currentIndex }
                 .drop(1)
                 .collectLatest { index ->
+                    onInteraction()
                     dampedDragAnimation.animateToValue(index.toFloat())
                     onTabSelected(index)
                 }
@@ -172,7 +173,7 @@ fun LiquidBottomTabs(
                     shape = { Capsule() },
                     effects = {
                         vibrancy()
-                        blur(10f.dp.toPx())
+                        blur(8f.dp.toPx())
                         lens(24f.dp.toPx(), 24f.dp.toPx())
                     },
                     layerBlock = {

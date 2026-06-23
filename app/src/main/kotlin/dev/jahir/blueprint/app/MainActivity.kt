@@ -139,7 +139,8 @@ class MainActivity : BottomNavigationBlueprintActivity() {
                     tabs = tabs,
                     selectedId = selectedId.intValue,
                     onSelect = { menuId -> onGlassTabSelected(menuId) },
-                    backdropState = backdropState
+                    backdropState = backdropState,
+                    onInteraction = { scheduleInteractionCaptures() }
                 )
             }
         }
@@ -166,6 +167,13 @@ class MainActivity : BottomNavigationBlueprintActivity() {
     private fun scheduleCaptures() {
         captureBackdrop()
         for (delay in longArrayOf(120L, 320L, 600L)) {
+            handler.postDelayed({ captureBackdrop() }, delay)
+        }
+    }
+
+    private fun scheduleInteractionCaptures() {
+        captureBackdrop()
+        for (delay in longArrayOf(16L, 32L, 48L, 80L, 120L, 180L, 240L)) {
             handler.postDelayed({ captureBackdrop() }, delay)
         }
     }
