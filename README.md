@@ -73,7 +73,7 @@ Free, feature-rich, easily customizable Android dashboard for icon packs
 
 <a href="https://pacificmanager.app" target="_blank">Pacific Manager</a> takes care of all your icon requests. Quit using the old traditional method of receiving emails from your users, making you sort through hundreds of potentially duplicate requests a day. </i>
 
-<b>Use the code `blueprint` at checkout to get 2 weeks of Pacific Manager for free.</b>
+<b>Use the code `Monet Icon Pack` at checkout to get 2 weeks of Pacific Manager for free.</b>
 
 ---
 
@@ -97,30 +97,11 @@ dependencies {
     }
 }
 ```
-where `{latest version}` corresponds to published version in   [![GitHub Release](https://img.shields.io/github/v/release/jahirfiquitiva/Blueprint?label=Blueprint&sort=semver)](https://github.com/jahirfiquitiva/Blueprint/releases/latest)
-
-## How to implement
-:page_with_curl: Everything you need to know can be found in the **[Wiki Docs](https://github.com/jahirfiquitiva/Blueprint/wiki/)**
-
-## Still need help :question:
-Just join our Discord Server and make a post. We'll help you as soon as possible. [![Join chat on Discord](https://badgen.net/badge/discord/join%20chat/7289DA?icon=discord)](https://discord.gg/78h7xgj)
+where `{latest version}` corresponds to published version in   [![GitHub Release](https://img.shields.io/github/v/release/monetcarlos2026/monet-icon-pack?label=monet-icon-pack&sort=semver)](https://github.com/monetcarlos2026/monet-icon-pack/releases/latest)
 
 ### Check out [some cool apps](https://jahir.dev/blog/post-of-fame) built using this dashboard
 
 ---
-
-# Developed by
-
-### [Jahir Fiquitiva](https://jahir.dev/)
-
-[![Follow on GitHub](https://img.shields.io/github/followers/jahirfiquitiva.svg?style=social&label=Follow)](https://github.com/jahirfiquitiva)
-[![Twitter Follow](https://img.shields.io/twitter/follow/jahirfiquitiva.svg?style=social)](https://twitter.com/jahirfiquitiva)
-
-If you found this app/library helpful and want to thank me, you can:
-
-<a target="_blank" href="https://jahir.dev/donate/">
-<img src="https://jahir.dev/share/support_my_work.svg?maxAge=432000" width="200"/>
-</a>
 
 **Thanks in advance!** :pray:
 
