@@ -17,8 +17,8 @@ class MainActivity : BottomNavigationBlueprintActivity() {
     override val billingEnabled = true
 
     override fun amazonInstallsEnabled(): Boolean = false
-    override fun checkLPF(): Boolean = true
-    override fun checkStores(): Boolean = true
+    override fun checkLPF(): Boolean = false
+    override fun checkStores(): Boolean = false
     override val isDebug: Boolean = BuildConfig.DEBUG
 
     /**
@@ -35,7 +35,8 @@ class MainActivity : BottomNavigationBlueprintActivity() {
      */
     override fun getLicenseChecker(): PiracyChecker? {
         destroyChecker() // Important
-        return if (BuildConfig.DEBUG) null else super.getLicenseChecker()
+        // License check disabled: personal, sideloaded icon pack (no Google Play LVL key).
+        return null
     }
 
     override fun defaultTheme(): Int = R.style.MyApp_Default
