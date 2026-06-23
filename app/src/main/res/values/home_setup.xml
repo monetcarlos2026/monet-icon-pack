@@ -6,7 +6,7 @@
         1. Small
         2. Big
     -->
-    <integer name="home_actions_style">1</integer>
+    <integer name="home_actions_style">0</integer>
 
     <!--
         Do you want to show overview in home section?

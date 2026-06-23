@@ -13,6 +13,8 @@ import android.widget.ScrollView
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.platform.ComposeView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.children
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
@@ -98,7 +100,13 @@ class MainActivity : BottomNavigationBlueprintActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        syncStatusBarWithToolbar()
         installLiquidGlass()
+    }
+
+    private fun syncStatusBarWithToolbar() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.primary)
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
     }
 
     private fun installLiquidGlass() {
