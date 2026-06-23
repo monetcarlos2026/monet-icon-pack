@@ -70,11 +70,12 @@ fun LiquidBottomTabs(
     val accentColor =
         if (isLightTheme) Color(0xFF0088FF)
         else Color(0xFF0091FF)
-    // More opaque than the original catalog (0.4) so the bar reads as a clean frosted
-    // capsule over busy page content instead of letting icons/text bleed through.
+    // Keep the surface fairly translucent (close to the catalog's 0.4) so the lens
+    // refraction of the scrolling content behind the bar stays visible at rest — that
+    // live distortion IS the liquid-glass look. Too opaque hides it.
     val containerColor =
-        if (isLightTheme) Color(0xFFFFFFFF).copy(0.82f)
-        else Color(0xFF1C1C1E).copy(0.72f)
+        if (isLightTheme) Color(0xFFFFFFFF).copy(0.42f)
+        else Color(0xFF1C1C1E).copy(0.4f)
 
     val tabsBackdrop = rememberLayerBackdrop()
 
@@ -171,7 +172,7 @@ fun LiquidBottomTabs(
                     shape = { Capsule() },
                     effects = {
                         vibrancy()
-                        blur(16f.dp.toPx())
+                        blur(10f.dp.toPx())
                         lens(24f.dp.toPx(), 24f.dp.toPx())
                     },
                     layerBlock = {

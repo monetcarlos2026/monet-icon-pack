@@ -9,10 +9,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import android.widget.ScrollView
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.core.widget.NestedScrollView
-import androidx.recyclerview.widget.RecyclerView
 import androidx.compose.ui.platform.ComposeView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.github.javiersantos.piracychecker.PiracyChecker
@@ -168,32 +165,9 @@ class MainActivity : BottomNavigationBlueprintActivity() {
 
     private fun scheduleCaptures() {
         captureBackdrop()
-        applyContentInset()
         for (delay in longArrayOf(120L, 320L, 600L)) {
-            handler.postDelayed({
-                applyContentInset()
-                captureBackdrop()
-            }, delay)
+            handler.postDelayed({ captureBackdrop() }, delay)
         }
-    }
-
-    /**
-     * Give the scrolling content a bottom inset the height of the floating bar so the
-     * list doesn't scroll under/around the capsule (Blueprint only reserves room for the
-     * original full-width nav bar, which is shorter than our floating glass bar).
-     */
-    private fun applyContentInset() {
-        val container = fragmentsContainer as? ViewGroup ?: return
-        val inset = (resources.displayMetrics.density * 104f).toInt()
-        fun walk(v: View) {
-            val scrollable = v is RecyclerView || v is ScrollView || v is NestedScrollView
-            if (scrollable && v.paddingBottom < inset) {
-                (v as ViewGroup).clipToPadding = false
-                v.setPadding(v.paddingLeft, v.paddingTop, v.paddingRight, inset)
-            }
-            if (v is ViewGroup) for (i in 0 until v.childCount) walk(v.getChildAt(i))
-        }
-        walk(container)
     }
 
     override fun onResume() {
@@ -203,10 +177,7 @@ class MainActivity : BottomNavigationBlueprintActivity() {
             it.visibility = View.INVISIBLE
             selectedId.intValue = it.selectedItemId
         }
-        handler.post {
-            applyContentInset()
-            captureBackdrop()
-        }
+        handler.post { captureBackdrop() }
     }
 
     override fun onDestroy() {
