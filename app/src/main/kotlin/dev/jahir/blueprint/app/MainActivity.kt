@@ -12,9 +12,6 @@ import android.view.ViewTreeObserver
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.platform.ComposeView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import com.github.javiersantos.piracychecker.PiracyChecker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.jahir.blueprint.app.glass.GlassBackdropState
@@ -65,7 +62,7 @@ class MainActivity : BottomNavigationBlueprintActivity() {
     override fun amoledMaterialYouTheme(): Int = R.style.MyApp_Default_Amoled_MaterialYou
 
     // ---------------------------------------------------------------------------------------------
-    // Liquid Glass bottom bar + immersive status-bar scrim
+    // Liquid Glass bottom bar (status bar is left to Blueprint's adaptive theming)
     // ---------------------------------------------------------------------------------------------
 
     private val backdropState = GlassBackdropState()
@@ -75,7 +72,6 @@ class MainActivity : BottomNavigationBlueprintActivity() {
     private var rootView: ViewGroup? = null
     private var bottomNav: BottomNavigationView? = null
     private var fragmentsContainer: View? = null
-    private var statusScrim: View? = null
     private var glassInstalled = false
 
     private var lastCaptureAt = 0L
@@ -120,20 +116,6 @@ class MainActivity : BottomNavigationBlueprintActivity() {
             }
         }
 
-        // Add the dark status-bar scrim (height set from insets below).
-        val scrim = View(this).apply {
-            background = androidx.core.content.ContextCompat.getDrawable(
-                this@MainActivity, R.drawable.status_bar_scrim
-            )
-            layoutParams = CoordinatorLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, 0
-            ).apply { gravity = Gravity.TOP }
-            isClickable = false
-            isFocusable = false
-        }
-        root.addView(scrim)
-        statusScrim = scrim
-
         // Add the Compose liquid-glass bar pinned to the bottom, above everything else.
         val composeView = ComposeView(this).apply {
             layoutParams = CoordinatorLayout.LayoutParams(
@@ -152,25 +134,7 @@ class MainActivity : BottomNavigationBlueprintActivity() {
 
         // Capture the content behind the bar whenever it scrolls (throttled).
         root.viewTreeObserver.addOnScrollChangedListener(scrollListener)
-        root.post {
-            updateScrimHeight()
-            captureBackdrop()
-        }
-    }
-
-    /**
-     * Size the status-bar scrim from the current insets. We read them rather than
-     * installing an OnApplyWindowInsetsListener so we don't clobber Blueprint's own
-     * edge-to-edge inset handling on the root view.
-     */
-    private fun updateScrimHeight() {
-        val root = rootView ?: return
-        val scrim = statusScrim ?: return
-        val top = ViewCompat.getRootWindowInsets(root)
-            ?.getInsets(WindowInsetsCompat.Type.statusBars())?.top ?: return
-        if (scrim.layoutParams.height != top) {
-            scrim.layoutParams = scrim.layoutParams.also { it.height = top }
-        }
+        root.post { captureBackdrop() }
     }
 
     private fun onGlassTabSelected(menuId: Int) {
@@ -212,14 +176,7 @@ class MainActivity : BottomNavigationBlueprintActivity() {
             it.visibility = View.INVISIBLE
             selectedId.intValue = it.selectedItemId
         }
-        // White status-bar icons sit well on the dark scrim.
-        rootView?.let {
-            WindowInsetsControllerCompat(window, it).isAppearanceLightStatusBars = false
-        }
-        handler.post {
-            updateScrimHeight()
-            captureBackdrop()
-        }
+        handler.post { captureBackdrop() }
     }
 
     override fun onDestroy() {
