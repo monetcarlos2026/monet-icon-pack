@@ -245,7 +245,7 @@ fun LiquidBottomTabs(
                     .padding(horizontal = 4f.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-            content(null, null)
+            content(visualIndex, null)
         }
         }
 
