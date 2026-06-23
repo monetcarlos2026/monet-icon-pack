@@ -66,6 +66,6 @@ class GlassBackdropState {
     }
 
     private companion object {
-        const val SCALE = 0.34f
+        const val SCALE = 0.16f
     }
 }
