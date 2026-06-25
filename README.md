@@ -73,12 +73,6 @@ dependencies {
 ```
 where `{latest version}` corresponds to published version in   [![GitHub Release](https://img.shields.io/github/v/release/monetcarlos2026/monet-icon-pack?label=monet-icon-pack&sort=semver)](https://github.com/monetcarlos2026/monet-icon-pack/releases/latest)
 
-### Check out [some cool apps](https://jahir.dev/blog/post-of-fame) built using this dashboard
-
----
-
-**Thanks in advance!** :pray:
-
 ## Special thanks 🙌
 - [MonetCarlos](https://github.com/monetcarlos2026/) 🎨 💻
 - [Xavierrr](https://github.com/Xavier-nai/) 🎨 💻
